@@ -13,18 +13,30 @@ It detects risky capabilities such as:
 - weak parameter validation
 
 ## Quick Start
-Run instantly:
+
+
+Install globally (optional):
+
+npm install -g mcp-install-guard
+
+
+Scan a local MCP stdio config instantly:
 
 ```bash
 npx mcp-install-guard --stdio-config ./sample-stdio-config.json
 ```
 
-Install globally:
+Scan a remote MCP server:
 
 ```bash
-npm install -g mcp-install-guard
+npx mcp-install-guard --server http://localhost:7331/mcp
 ```
 
+Fail CI on dangerous tools:
+
+```bash
+npx mcp-install-guard --stdio-config ./sample-stdio-config.json --fail-on high
+```
 ## Example Output
 
 ```text
@@ -51,4 +63,5 @@ MCP servers can access:
 Installing one without inspection is a trust decision.
 
 MCP Install Guard helps you inspect first.
+
 
