@@ -4,10 +4,10 @@
   "description": "Scan MCP servers before installing them",
   "type": "module",
   "bin": {
-    "mcp-install-guard": "./mcp-install-guard-cli.mjs"
+    "mcp-install-guard": "cli.mjs"
   },
   "scripts": {
-    "start": "node ./mcp-install-guard-cli.mjs"
+    "start": "node ./cli.mjs"
   },
   "repository": {
     "type": "git",
@@ -31,3 +31,4 @@
     "node": ">=20"
   }
 }
+
