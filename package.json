@@ -1,6 +1,6 @@
 {
   "name": "mcp-install-guard",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Scan MCP servers before installing them",
   "type": "module",
   "bin": {
@@ -31,4 +31,3 @@
     "node": ">=20"
   }
 }
-
