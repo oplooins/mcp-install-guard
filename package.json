@@ -1,0 +1,34 @@
+{
+  "name": "mcp-install-guard",
+  "version": "0.1.0",
+  "description": "Scan MCP servers before installing them",
+  "type": "module",
+  "bin": {
+    "mcp-install-guard": "./mcp-install-guard-cli.mjs"
+  },
+  "scripts": {
+    "start": "node ./mcp-install-guard-cli.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oplooins/mcp-install-guard.git"
+  },
+  "keywords": [
+    "mcp",
+    "ai-security",
+    "llm",
+    "agent-security",
+    "cli",
+    "security"
+  ],
+  "author": "oplooins",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oplooins/mcp-install-guard/issues"
+  },
+  "homepage": "https://github.com/oplooins/mcp-install-guard#readme",
+  "engines": {
+    "node": ">=20"
+  }
+}
+
