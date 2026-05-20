@@ -13,7 +13,6 @@ It detects risky capabilities such as:
 - weak parameter validation
 
 ## Quick Start
-
 Run instantly:
 
 ```bash
@@ -34,6 +33,11 @@ Health Score: 49
 Risk Score: 51
 Decision: fix-before-install
 ```
+## CI Usage
+
+Use MCP Install Guard in GitHub Actions to fail builds when risky MCP tools are detected.
+
+See: [GitHub Actions Integration](./docs/github-actions.md)
 
 ## Why This Exists
 
