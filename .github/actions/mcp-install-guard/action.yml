@@ -1,0 +1,61 @@
+name: "MCP Install Guard"
+description: "Scan MCP servers before installation"
+
+inputs:
+  stdio-config:
+    description: "Path to stdio MCP config file"
+    required: false
+
+  file:
+    description: "Path to tools/list JSON file"
+    required: false
+
+  server:
+    description: "HTTP MCP server URL"
+    required: false
+
+  token:
+    description: "Bearer token for authenticated MCP server"
+    required: false
+
+  fail-on:
+    description: "Fail threshold: high, medium, or risk:<number>"
+    required: false
+    default: "high"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+
+    - name: Run MCP Install Guard
+      shell: bash
+      run: |
+        CMD=(npx mcp-install-guard)
+
+        if [ -n "${{ inputs.stdio-config }}" ]; then
+          CMD+=(--stdio-config "${{ inputs.stdio-config }}")
+        fi
+
+        if [ -n "${{ inputs.file }}" ]; then
+          CMD+=(--file "${{ inputs.file }}")
+        fi
+
+        if [ -n "${{ inputs.server }}" ]; then
+          CMD+=(--server "${{ inputs.server }}")
+        fi
+
+        if [ -n "${{ inputs.token }}" ]; then
+          CMD+=(--token "${{ inputs.token }}")
+        fi
+
+        CMD+=(--fail-on "${{ inputs.fail-on }}")
+
+        echo "Running MCP Install Guard..."
+        "${CMD[@]}"
+
+
+
