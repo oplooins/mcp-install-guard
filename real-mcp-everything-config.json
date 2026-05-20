@@ -1,0 +1,11 @@
+{
+  "command": "cmd",
+  "args": [
+    "/c",
+    "npx",
+    "-y",
+    "@modelcontextprotocol/server-everything"
+  ],
+  "env": {},
+  "cwd": "C:\\Users\\26556\\Documents\\Codex\\2026-05-19\\new-chat"
+}
