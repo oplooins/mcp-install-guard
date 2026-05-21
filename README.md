@@ -1,67 +1,53 @@
 # MCP Install Guard
 
-Scan MCP servers before you trust them.
+AI Tool Security Gate for MCP servers.
 
-MCP Install Guard is a local-first security scanner that helps developers inspect MCP servers before installation.
+Inspect MCP servers before you trust them.
 
-It detects risky capabilities such as:
+MCP servers may access:
+
+- local files
+- shell commands
+- APIs
+- credentials
+
+## Try in 10 seconds
+
+```bash
+npx mcp-install-guard@beta --demo
+```
+
+
+## What it detects
 
 - unrestricted filesystem access
 - shell execution
-- credential or token exposure
-- prompt injection in tool descriptions
-- weak parameter validation
+- token / credential exposure
+- prompt injection patterns
+- weak tool schemas
+- dangerous write actions
 
-## Quick Start
-
-
-Install globally (optional):
-
-npm install -g mcp-install-guard
-
-
-Scan a local MCP stdio config instantly:
+## Scan your own MCP config
 
 ```bash
-npx mcp-install-guard --stdio-config ./sample-stdio-config.json
+npx mcp-install-guard@beta --stdio-config ./server.json
 ```
 
-Scan a remote MCP server:
+## Scan a remote MCP server
 
 ```bash
-npx mcp-install-guard --server http://localhost:7331/mcp
+npx mcp-install-guard@beta --server http://localhost:7331/mcp
 ```
 
-Fail CI on dangerous tools:
+## Block risky tools in CI
 
 ```bash
-npx mcp-install-guard --stdio-config ./sample-stdio-config.json --fail-on high
+npx mcp-install-guard@beta --fail-on high
 ```
-## Example Output
 
-```text
-MCP Install Risk Report
-Health Score: 49
-Risk Score: 51
-Decision: fix-before-install
-```
-## CI Usage
+## Why this exists
 
-Use MCP Install Guard in GitHub Actions to fail builds when risky MCP tools are detected.
-
-See: [GitHub Actions Integration](./docs/github-actions.md)
-
-## Why This Exists
-
-MCP servers can access:
-
-- files
-- APIs
-- databases
-- shell commands
-
-Installing one without inspection is a trust decision.
+Most people install MCP servers without understanding what permissions they expose.
 
 MCP Install Guard helps you inspect first.
-
 
