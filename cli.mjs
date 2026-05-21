@@ -646,7 +646,8 @@ async function loadInput(args) {
     };
   }
 
-  throw new Error("Missing input. Use --file <path>, --server <url>, or --stdio-config <path>.");
+  printHelp();
+  process.exit(1);
 }
 
 function printSummary(report) {

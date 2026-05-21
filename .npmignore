@@ -1,0 +1,11 @@
+.github
+docs
+*.html
+*.zip
+patch-help.mjs
+mock-*.mjs
+sample-*.json
+real-*.json
+example-report.md
+README.zh-CN.md
+
