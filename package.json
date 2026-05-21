@@ -1,6 +1,7 @@
 {
   "name": "mcp-install-guard",
-  "version": "0.2.0-beta.4"
+  "version": "0.2.0-beta.4",
+
 
   "description": "AI Tool Security Gate for MCP servers",
   "type": "module",
