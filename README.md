@@ -1,21 +1,35 @@
 # MCP Install Guard
 
-AI Tool Security Gate for MCP servers.
+Block dangerous MCP servers before you install them.
 
-Inspect MCP servers before you trust them.
+## Security Gate
 
-MCP servers may access:
+Scan stdio config:
 
-- local files
-- shell commands
-- APIs
-- credentials
+```bash
+mcp-install-guard-gate --stdio-config ./server.json --enforce
+```
 
+Scan remote MCP server:
+
+```bash
+mcp-install-guard-gate --server http://localhost:7331/mcp --enforce
+```
+
+If dangerous tools are detected:
+
+- shell execution
+- destructive write actions
+- secret/token exposure
+- prompt injection patterns
+
+installation is blocked with exit code 2.
 ## Try in 10 seconds
 
 ```bash
 npx mcp-install-guard@beta --demo
 ```
+
 
 
 ## What it detects
@@ -33,11 +47,6 @@ npx mcp-install-guard@beta --demo
 npx mcp-install-guard@beta --stdio-config ./server.json
 ```
 
-## Scan a remote MCP server
-
-```bash
-npx mcp-install-guard@beta --server http://localhost:7331/mcp
-```
 
 ## Block risky tools in CI
 
