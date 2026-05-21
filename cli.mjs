@@ -1,38 +1,39 @@
 #!/usr/bin/env node
 
 
-const VERSION = "0.1.0";
+const VERSION = "0.2.0-beta.4";
+
 
 function printHelp() {
   console.log(`
-MCP Install Guard CLI v${VERSION}
+MCP Install Guard v${VERSION}
+AI Tool Security Gate for MCP servers
 
 Usage:
-  node mcp-install-guard-cli.mjs --file tools-list.json
-  node mcp-install-guard-cli.mjs --server http://localhost:7331/mcp
-  node mcp-install-guard-cli.mjs --server https://example.com/mcp --token sk-...
-  node mcp-install-guard-cli.mjs --stdio-config mcp-server.json
-  node mcp-install-guard-cli.mjs --file tools-list.json --json
-  node mcp-install-guard-cli.mjs --server http://localhost:7331/mcp --out report.json
-  node mcp-install-guard-cli.mjs --file tools-list.json --out-md report.md
-  node mcp-install-guard-cli.mjs --file tools-list.json --fail-on high
-  node mcp-install-guard-cli.mjs --file tools-list.json --fail-on risk:60
+  mcp-install-guard --file tools-list.json
+  mcp-install-guard --server http://localhost:7331/mcp
+  mcp-install-guard --server https://example.com/mcp --token sk-xxx
+  mcp-install-guard --stdio-config mcp-server.json
+  mcp-install-guard --file tools-list.json --json
+  mcp-install-guard --server http://localhost:7331/mcp --out report.json
+  mcp-install-guard --file tools-list.json --out-md report.md
+  mcp-install-guard --file tools-list.json --fail-on high
+  mcp-install-guard --file tools-list.json --fail-on risk:60
 
 Options:
-  --server <url>       Scan a Streamable HTTP MCP server by calling tools/list.
-  --file <path>        Scan a local tools/list JSON file.
-  --stdio-config <path> Scan a stdio MCP server config file with command/args/env.
-  --token <token>      Bearer token for authenticated HTTP MCP servers.
-  --json               Print the full JSON report.
-  --out <path>         Write the full JSON report to a file.
-  --out-md <path>      Write a Markdown report to a file.
-  --fail-on <rule>     Exit with code 2 when a risk threshold is reached.
-                       Supported: high, medium, risk:<number>
-  --help               Show this help.
+  --server <url>         Scan a Streamable HTTP MCP server
+  --file <path>          Scan a local tools/list JSON file
+  --stdio-config <path>  Scan a stdio MCP server config
+  --token <token>        Bearer token for authenticated MCP servers
+  --json                 Print JSON report
+  --out <path>           Write JSON report to file
+  --out-md <path>        Write Markdown report
+  --fail-on <rule>       high | medium | risk:<number>
+  --help                 Show help
 
 Examples:
-  node mcp-install-guard-cli.mjs --file sample-tools.json
-  node mcp-install-guard-cli.mjs --server http://localhost:7331/mcp --fail-on high
+  mcp-install-guard --file sample-tools-list.json
+  mcp-install-guard --server http://localhost:7331/mcp --fail-on high
 `);
 }
 
@@ -53,6 +54,7 @@ function parseArgs(argv) {
     const arg = argv[i];
     if (arg === "--help" || arg === "-h") args.help = true;
     else if (arg === "--json") args.json = true;
+    else if (arg === "--demo") args.demo = true;
     else if (arg === "--server") args.server = argv[++i] || "";
     else if (arg === "--file") args.file = argv[++i] || "";
     else if (arg === "--stdio-config") args.stdioConfig = argv[++i] || "";
@@ -97,6 +99,7 @@ function addIssue(issues, severity, tool, title, detail, fix) {
     fix
   });
 }
+
 
 function isWriteTool(tool) {
   const text = `${tool.name || ""} ${tool.description || ""}`.toLowerCase();
@@ -724,10 +727,15 @@ function shouldFail(report, rule) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
+  if (args.demo) {
+  args.stdioConfig = "./sample-stdio-config.json";
+  args.json = true;
+}
   if (args.help) {
     printHelp();
     return;
   }
+
 
   const input = await loadInput(args);
   const tools = normalizeTools(input.value);
@@ -760,3 +768,4 @@ main().catch((error) => {
   console.error(`Error: ${error.message}`);
   process.exitCode = 1;
 });
+

@@ -1,10 +1,11 @@
 {
   "name": "mcp-install-guard",
-  "version": "0.2.0-beta.3",
+  "version": "0.2.0-beta.4"
+
   "description": "AI Tool Security Gate for MCP servers",
   "type": "module",
   "bin": {
-    "mcp-install-guard": "./cli.mjs"
+    "mcp-install-guard": "cli.mjs"
   },
   "scripts": {
     "start": "node ./cli.mjs",
@@ -42,4 +43,5 @@
     "docs/"
   ]
 }
+
 
