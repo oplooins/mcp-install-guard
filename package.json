@@ -1,13 +1,15 @@
 {
   "name": "mcp-install-guard",
-  "version": "0.2.0-beta.1",
-  "description": "Scan MCP servers before installing them",
+  "version": "0.2.0-beta.3",
+  "description": "AI Tool Security Gate for MCP servers",
   "type": "module",
   "bin": {
-    "mcp-install-guard": "cli.mjs"
+    "mcp-install-guard": "./cli.mjs"
   },
   "scripts": {
-    "start": "node ./cli.mjs"
+    "start": "node ./cli.mjs",
+    "check": "node --check ./cli.mjs && node --check ./mcp-install-guard-proxy.mjs",
+    "demo": "node ./cli.mjs --stdio-config ./sample-stdio-config.json --json"
   },
   "repository": {
     "type": "git",
@@ -19,7 +21,9 @@
     "llm",
     "agent-security",
     "cli",
-    "security"
+    "security",
+    "mcp-security",
+    "ai-tool-security"
   ],
   "author": "oplooins",
   "license": "MIT",
@@ -29,6 +33,13 @@
   "homepage": "https://github.com/oplooins/mcp-install-guard#readme",
   "engines": {
     "node": ">=20"
-  }
+  },
+  "files": [
+    "cli.mjs",
+    "mcp-install-guard-proxy.mjs",
+    "README.md",
+    "README.zh-CN.md",
+    "docs/"
+  ]
 }
 

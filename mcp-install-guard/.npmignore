@@ -1,0 +1,16 @@
+.github
+docs
+prototypes
+mock-*.mjs
+sample-*.json
+real-*.json
+example-report.md
+FINAL_EFFECT.md
+*.zip
+*.tgz
+patch-help.mjs
+baseline-report.json
+reports
+coverage
+dist
+build

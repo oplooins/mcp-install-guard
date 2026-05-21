@@ -1,0 +1,11 @@
+{
+  "maxRiskScore": 60,
+  "deny": [
+    "shell",
+    "filesystem-write",
+    "credential-exposure",
+    "prompt-injection"
+  ],
+  "allowTools": [],
+  "denyTools": []
+}

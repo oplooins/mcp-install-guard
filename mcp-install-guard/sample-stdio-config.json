@@ -1,0 +1,8 @@
+{
+  "command": "C:\\Users\\26556\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+  "args": [
+    "mock-mcp-stdio-server.mjs"
+  ],
+  "env": {},
+  "cwd": "C:\\Users\\26556\\Documents\\Codex\\2026-05-19\\new-chat"
+}

@@ -1,0 +1,46 @@
+{
+  "name": "mcp-install-guard",
+  "version": "0.2.0-beta.3",
+  "description": "CI security gate for MCP and AI tool permissions.",
+  "type": "module",
+  "bin": {
+    "mcp-install-guard": "./mcp-install-guard-cli.mjs"
+  },
+  "scripts": {
+    "start": "node ./mcp-install-guard-proxy.mjs",
+    "demo": "node ./mcp-install-guard-cli.mjs --demo",
+    "demo:policy": "node ./mcp-install-guard-cli.mjs --demo --policy ./policy.example.json --fail-on policy",
+    "mock:http": "node ./mock-mcp-http-server.mjs",
+    "scan:sample": "node ./mcp-install-guard-cli.mjs --file ./sample-tools-list.json",
+    "scan:stdio": "node ./mcp-install-guard-cli.mjs --stdio-config ./sample-stdio-config.json",
+    "report:md": "node ./mcp-install-guard-cli.mjs --demo --out-md ./example-report.md",
+    "check": "node --check ./mcp-install-guard-cli.mjs && node --check ./mcp-install-guard-proxy.mjs"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-security",
+    "agent-security",
+    "security",
+    "ci",
+    "github-actions",
+    "policy",
+    "permission-diff",
+    "developer-tools",
+    "llm",
+    "ai-agents"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "mcp-install-guard-cli.mjs",
+    "mcp-install-guard-proxy.mjs",
+    "mcp-health-checker.html",
+    "policy.example.json",
+    "README.md",
+    "README.zh-CN.md",
+    "LICENSE"
+  ]
+}
