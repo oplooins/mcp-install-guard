@@ -1,16 +1,15 @@
 {
   "name": "mcp-install-guard",
-  "version": "0.2.0-beta.4",
-
-
+  "version": "0.2.0-beta.5",
   "description": "AI Tool Security Gate for MCP servers",
   "type": "module",
   "bin": {
-    "mcp-install-guard": "cli.mjs"
+    "mcp-install-guard": "cli.mjs",
+    "mcp-install-guard-gate": "gate.mjs"
   },
   "scripts": {
     "start": "node ./cli.mjs",
-    "check": "node --check ./cli.mjs && node --check ./mcp-install-guard-proxy.mjs",
+    "check": "node --check ./cli.mjs && node --check ./mcp-install-guard-proxy.mjs && node --check ./gate.mjs",
     "demo": "node ./cli.mjs --stdio-config ./sample-stdio-config.json --json"
   },
   "repository": {
@@ -23,9 +22,7 @@
     "llm",
     "agent-security",
     "cli",
-    "security",
-    "mcp-security",
-    "ai-tool-security"
+    "security"
   ],
   "author": "oplooins",
   "license": "MIT",
@@ -38,11 +35,11 @@
   },
   "files": [
     "cli.mjs",
+    "gate.mjs",
     "mcp-install-guard-proxy.mjs",
     "README.md",
     "README.zh-CN.md",
     "docs/"
   ]
 }
-
 
