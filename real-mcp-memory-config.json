@@ -6,6 +6,5 @@
     "-y",
     "@modelcontextprotocol/server-memory"
   ],
-  "env": {},
-  "cwd": "C:\\Users\\26556\\Documents\\Codex\\2026-05-19\\new-chat"
+  "env": {}
 }

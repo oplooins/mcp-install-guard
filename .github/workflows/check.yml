@@ -1,0 +1,34 @@
+name: Check
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Release doctor
+        run: npm run release:doctor
+
+      - name: Safe sample scan
+        run: node ./cli.mjs --file ./examples/tools-list.safe.json
+
+      - name: Risky sample must fail policy
+        run: |
+          set +e
+          node ./cli.mjs --file ./examples/tools-list.risky.json --fail-on high
+          code=$?
+          if [ "$code" -ne 2 ]; then
+            echo "Expected exit code 2, got $code"
+            exit 1
+          fi

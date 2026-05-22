@@ -1,0 +1,6 @@
+{
+  "command": "node",
+  "args": ["src/mocks/mock-mcp-stdio-server.mjs"],
+  "env": {},
+  "cwd": "."
+}

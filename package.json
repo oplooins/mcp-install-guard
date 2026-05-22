@@ -1,31 +1,35 @@
 {
   "name": "mcp-install-guard",
-  "version": "0.2.0-beta.5",
-  "description": "AI Tool Security Gate for MCP servers",
+  "version": "0.2.0-beta.11",
+  "description": "Block dangerous MCP servers before you install them.",
   "type": "module",
   "bin": {
     "mcp-install-guard": "cli.mjs",
     "mcp-install-guard-gate": "gate.mjs"
   },
   "scripts": {
-    "start": "node ./cli.mjs",
-    "check": "node --check ./cli.mjs && node --check ./mcp-install-guard-proxy.mjs && node --check ./gate.mjs",
-    "demo": "node ./cli.mjs --stdio-config ./sample-stdio-config.json --json"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/oplooins/mcp-install-guard.git"
+    "start": "node ./cli.mjs --help",
+    "check": "node --check ./cli.mjs && node --check ./gate.mjs && node --check ./mcp-install-guard-proxy.mjs",
+    "demo": "node ./cli.mjs --demo",
+    "gate": "node ./gate.mjs --stdio-config ./sample-stdio-config.json --enforce",
+    "test": "npm run check && npm run demo"
   },
   "keywords": [
     "mcp",
     "ai-security",
     "llm",
     "agent-security",
+    "security",
     "cli",
-    "security"
+    "developer-tools",
+    "mcp-security"
   ],
   "author": "oplooins",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oplooins/mcp-install-guard.git"
+  },
   "bugs": {
     "url": "https://github.com/oplooins/mcp-install-guard/issues"
   },
@@ -39,7 +43,7 @@
     "mcp-install-guard-proxy.mjs",
     "README.md",
     "README.zh-CN.md",
-    "docs/"
+    "docs/",
+    ".github/actions/mcp-install-guard/action.yml"
   ]
 }
-

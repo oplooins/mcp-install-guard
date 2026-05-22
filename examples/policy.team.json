@@ -1,0 +1,6 @@
+{
+  "maxRiskScore": 70,
+  "deny": ["shell", "credential-exposure", "prompt-injection"],
+  "allowTools": ["search_docs"],
+  "denyTools": []
+}

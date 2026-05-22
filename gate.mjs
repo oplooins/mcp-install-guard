@@ -58,11 +58,14 @@ function runScanner(args) {
   if (args.token) cmd.push("--token", args.token);
 
 
-  const result = spawnSync("node", cmd, {
+  const result = spawnSync(process.execPath, cmd, {
     encoding: "utf8"
   });
 
   if (result.error) throw result.error;
+  if (result.status !== 0 && !result.stdout) {
+    throw new Error(result.stderr || `Scanner failed with exit code ${result.status}`);
+  }
   if (!result.stdout) throw new Error(result.stderr || "Scanner failed");
 
   return JSON.parse(result.stdout);
@@ -92,14 +95,17 @@ function main() {
 
   const report = runScanner(args);
   const badTools = (report.tools || []).filter(blocked);
+  const hardBlock = badTools.length > 0 || report.installDecision?.level === "high";
 
   console.log("");
   console.log("MCP INSTALL GUARD GATE");
   console.log("======================");
   console.log("");
-  console.log(`Decision: ${badTools.length ? "BLOCK" : "ALLOW"}`);
+  console.log(`Decision: ${hardBlock ? "BLOCK" : "ALLOW"}`);
   console.log(`Health Score: ${report.score}`);
   console.log(`Risk Score: ${report.riskScore}`);
+  console.log(`Install Decision: ${report.installDecision?.label || "unknown"}`);
+  if (report.installDecision?.reason) console.log(`Reason: ${report.installDecision.reason}`);
   console.log("");
 
   if (badTools.length) {
@@ -112,10 +118,10 @@ function main() {
     console.log("");
     console.log("Recommendation: do not install.");
   } else {
-    console.log("Recommendation: safe to install.");
+    console.log("Recommendation: allowed by current gate policy. Test in a restricted environment first.");
   }
 
-  if (args.enforce && badTools.length) {
+  if (args.enforce && hardBlock) {
     process.exit(2);
   }
 }
@@ -126,4 +132,3 @@ try {
   console.error("Error:", err.message);
   process.exit(1);
 }
-

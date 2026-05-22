@@ -1,8 +1,3 @@
-# GitHub Actions Integration
-
-Use MCP Install Guard to block risky MCP or AI tool changes in CI.
-
-```yaml
 name: MCP Security Gate
 
 on:
@@ -20,14 +15,3 @@ jobs:
           file: ./examples/sample-tools-list.json
           policy: ./examples/policy.strict.json
           fail-on: policy
-```
-
-Supported inputs:
-
-- `file`
-- `stdio-config`
-- `server`
-- `token`
-- `policy`
-- `baseline`
-- `fail-on`

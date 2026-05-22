@@ -1,9 +1,9 @@
-node_modules
-.env
-.env.local
-dist
-coverage
-*.log
+node_modules/
+*.tgz
 *.zip
+report.json
+demo-report.json
+remote-report.json
+stdio-report.json
+npm-debug.log*
 .DS_Store
-

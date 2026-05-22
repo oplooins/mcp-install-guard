@@ -1,0 +1,6 @@
+{
+  "maxRiskScore": 50,
+  "deny": ["shell", "mutation", "secrets", "prompt-injection"],
+  "allowTools": [],
+  "denyTools": []
+}

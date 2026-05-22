@@ -1,0 +1,32 @@
+{
+  "tools": [
+    {
+      "name": "search_docs",
+      "description": "Search public documentation by query and return matching snippets.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query."
+          }
+        },
+        "required": ["query"]
+      }
+    },
+    {
+      "name": "get_project_status",
+      "description": "Read project status from a safe read-only status endpoint.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "description": "Project identifier."
+          }
+        },
+        "required": ["projectId"]
+      }
+    }
+  ]
+}
